@@ -13,3 +13,4 @@ E:\Programowanie\Turn-Based-Game\obj\Debug\Turn-Based-Game.csproj.GenerateResour
 E:\Programowanie\Turn-Based-Game\obj\Debug\Turn-Based-Game.csproj.CoreCompileInputs.cache
 E:\Programowanie\Turn-Based-Game\obj\Debug\Turn-Based-Game.exe
 E:\Programowanie\Turn-Based-Game\obj\Debug\Turn-Based-Game.pdb
+E:\Programowanie\Turn-Based-Game\obj\Debug\App.baml

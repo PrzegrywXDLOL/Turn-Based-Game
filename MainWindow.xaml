@@ -3,12 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Turn_Based_Game"
+        xmlns:local="clr-namespace:Turn_Based_Game" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600">
-    <Grid>
+    <Grid Background="SkyBlue">
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
+            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0" Grid.Row="1" x:Name="pl1Buff"/>
+        <Image Grid.Column="1" Grid.Row="1" x:Name="pl2Buff"/>
+
+        <ScrollViewer Grid.Column="0" Grid.Row="2">
+            <ScrollViewer.Resources>
+                <sys:Double 
+                    x:Key=
+                    "{x:Static SystemParameters.VerticalScrollBarWidthKey}">10
+                </sys:Double>
+            </ScrollViewer.Resources>
+            <TextBlock x:Name="roundInfo" 
+                       Text=""/>
+        </ScrollViewer>
+        
+        <Grid Grid.Row="2" Grid.Column="1" Background="SaddleBrown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        </Grid>
     </Grid>
 </Window>
