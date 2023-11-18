@@ -4,21 +4,21 @@
              xmlns:local="clr-namespace:Turn_Based_Game"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <ImageBrush x:Key="AddButtonImageBrush" ImageSource="/Assets/Sign.png"/>
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="Segoe Script Bold"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{StaticResource AddButtonImageBrush}"/>
         </Style>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="Segoe Script Bold"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Background" Value="RosyBrown"/>
-            <Setter Property="Width" Value="275"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
-        <Style TargetType="{x:Type Image}">
+        <Style TargetType="{x:Type Image}" x:Key="Buffs">
             <Setter Property="Margin" Value="25"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Height" Value="75"/>
@@ -27,7 +27,7 @@
         <Style TargetType="{x:Type ScrollViewer}">
             <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
             <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="Background" Value="SaddleBrown"/>
+            <Setter Property="Background" Value="ForestGreen"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
     </Application.Resources>
