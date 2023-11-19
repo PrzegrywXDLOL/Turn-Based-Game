@@ -97,6 +97,11 @@
   <ItemGroup>
     <Resource Include="Assets\Sign.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Scroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\TopSign.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

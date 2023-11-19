@@ -5,18 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Turn_Based_Game" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
-
+        Title="Turn Based Game" Height="650" Width="1000"
+        ResizeMode="NoResize">
+    
     <Grid Background="SkyBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition/>
-            <RowDefinition Height="75"/>
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource TopInfo}"
+                   x:Name="Player1Name" Text="Player 1 Placeholder"/>
+        <TextBlock Grid.Row="0" Grid.Column="1"
+                   Style="{StaticResource TopInfo}"
+                   x:Name="Player2Name" Text="Player 2 Placeholder"/>
+
+        <ProgressBar Grid.Row="0" Grid.Column="0" 
+                     x:Name="Player1HP"/>
+        <ProgressBar Grid.Row="0" Grid.Column="1"
+                     x:Name="Player2HP"/>
+        
 
         <Image Style="{StaticResource Buffs}" Grid.Column="0" 
                Grid.Row="1" x:Name="pl1Buff"/>
@@ -25,15 +39,10 @@
 
         <ScrollViewer Grid.Column="0" Grid.Row="2">
             
-            <ScrollViewer.Resources>
-                <sys:Double 
-                    x:Key=
-                    "{x:Static SystemParameters.VerticalScrollBarWidthKey}">10
-                </sys:Double>
-            </ScrollViewer.Resources>
-            
             <TextBlock x:Name="roundInfo" 
-                       Text=""/>
+                       Style="{StaticResource RoundInfo}" 
+                       Text="TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST "/>
+            
         </ScrollViewer>
 
         <Grid Grid.Row="2" Grid.Column="1" Background="ForestGreen">
@@ -50,12 +59,11 @@
             <Button x:Name="Attack" Grid.Column="0" 
                     Grid.Row="0" Content="Attack"/>
             <Button x:Name="Block" Grid.Column="0" 
-                    Grid.Row="1" Content="Block"/>
+                    Grid.Row="1" Content="Block"
+                    Grid.ColumnSpan="2"/>
             <Button x:Name="Heal" Grid.Column="1" 
                     Grid.Row="0" Content="Heal"/>
-            <Button x:Name="Placeholder" Grid.Column="1" 
-                    Grid.Row="1" Content=""/>
-            
+
         </Grid>
     </Grid>
 </Window>

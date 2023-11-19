@@ -1,34 +1,83 @@
 ﻿<Application x:Class="Turn_Based_Game.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Turn_Based_Game"
+             xmlns:local="clr-namespace:Turn_Based_Game" xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ImageBrush x:Key="AddButtonImageBrush" ImageSource="/Assets/Sign.png"/>
+        <ImageBrush x:Key="ButtonImage" ImageSource="/Assets/Sign.png"/>
+        <ImageBrush x:Key="TextBlockImage" ImageSource="/Assets/Scroll.png"/>
+        <ImageBrush x:Key="TopTextBlockImage" ImageSource="Assets\TopSign.png"/>
+        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="Segoe Script Bold"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Background" Value="{StaticResource AddButtonImageBrush}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonImage}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
-        <Style TargetType="{x:Type TextBlock}">
+        
+        <Style TargetType="{x:Type TextBlock}" x:Key="RoundInfo">
             <Setter Property="FontFamily" Value="Segoe Script Bold"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Padding" Value="30,15,30,15"/>
+            <Setter Property="Background" Value="{StaticResource TextBlockImage}"/>
         </Style>
+        
+        <Style TargetType="{x:Type TextBlock}" x:Key="TopInfo">
+            <Setter Property="FontFamily" Value="Segoe Script Bold"/>
+            <Setter Property="Background" Value="{StaticResource TopTextBlockImage}"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="0,45,0,0"/>
+        </Style>
+        
         <Style TargetType="{x:Type Image}" x:Key="Buffs">
             <Setter Property="Margin" Value="25"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Height" Value="75"/>
             <Setter Property="Width" Value="75"/>
         </Style>
+
         <Style TargetType="{x:Type ScrollViewer}">
             <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
             <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
             <Setter Property="Background" Value="ForestGreen"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
+
+        <Style TargetType="{x:Type ProgressBar}">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="Red"/>
+        </Style>
+
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Foreground" Value="SandyBrown"/>
+            <Setter Property="Background" Value="ForestGreen"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="GridRoot" Width="10">
+                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true">
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                               Style="{DynamicResource ScrollThumbs}"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>
