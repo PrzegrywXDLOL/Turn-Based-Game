@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Turn Based Game" Height="650" Width="1000"
         ResizeMode="NoResize">
-    
+
     <Grid Background="SkyBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"/>
@@ -18,31 +18,79 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <TextBlock Grid.Row="0" Grid.Column="0"
-                   Style="{StaticResource TopInfo}"
-                   x:Name="Player1Name" Text="Player 1 Placeholder"/>
+                   x:Name="Player1Name" Text="Player 1 Placeholder">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource TopInfo}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding p1Turn}" Value="True">
+                            <Setter Property="Foreground" Value="Gold"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding p1Turn}" Value="False">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
         <TextBlock Grid.Row="0" Grid.Column="1"
-                   Style="{StaticResource TopInfo}"
-                   x:Name="Player2Name" Text="Player 2 Placeholder"/>
+                   x:Name="Player2Name" Text="Player 2 Placeholder">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource TopInfo}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding p1Turn}" Value="True">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding p1Turn}" Value="False">
+                            <Setter Property="Foreground" Value="Gold"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <ProgressBar Grid.Row="0" Grid.Column="0" 
-                     x:Name="Player1HP"/>
+                     x:Name="Player1HP" Value="0"
+                     Style="{StaticResource ProgressBarWithText}"/>
+
         <ProgressBar Grid.Row="0" Grid.Column="1"
-                     x:Name="Player2HP"/>
-        
+                     x:Name="Player2HP" Value="0"
+                     Style="{StaticResource ProgressBarWithText}"/>
 
         <Image Style="{StaticResource Buffs}" Grid.Column="0" 
-               Grid.Row="1" x:Name="pl1Buff"/>
-        <Image Style="{StaticResource Buffs}" 
-               Grid.Column="1" Grid.Row="1" x:Name="pl2Buff"/>
+               Grid.Row="1" x:Name="pl1Buff" Source=""/>
 
-        <ScrollViewer Grid.Column="0" Grid.Row="2">
-            
+        <Image Style="{StaticResource Buffs}" Grid.Column="1" 
+               Grid.Row="1" x:Name="pl2Buff" Source=""/>
+
+        <Image Style="{StaticResource Sprites}" Grid.Column="0" 
+               Grid.Row="1" x:Name="pl1Sprite" Source=""/>
+
+        <Image Style="{StaticResource Sprites}" Grid.Column="1" 
+               Grid.Row="1" x:Name="pl2Sprite" Source="" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Rectangle Grid.Row="2" Grid.Column="0" Fill="ForestGreen" />
+
+        <ScrollViewer x:Name="Scroll" Grid.Column="0" Grid.Row="2" 
+                      Style="{StaticResource ScrollBackground}">
+
             <TextBlock x:Name="roundInfo" 
                        Style="{StaticResource RoundInfo}" 
-                       Text="TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST "/>
-            
+                       Text="Placeholder"
+                       SizeChanged="roundInfo_SizeChanged"/>
+
         </ScrollViewer>
 
         <Grid Grid.Row="2" Grid.Column="1" Background="ForestGreen">
@@ -56,13 +104,19 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="Attack" Grid.Column="0" 
-                    Grid.Row="0" Content="Attack"/>
-            <Button x:Name="Block" Grid.Column="0" 
+            <Button Template="{DynamicResource ButtonTemplateNew}" 
+                    Grid.Column="0" Grid.Row="0" Content="Attack"
+                    x:Name="AttackBtn" Click="Attack_Click"/>
+
+            <Button Template="{DynamicResource ButtonTemplateNew}" 
+                    x:Name="BlockBtn" Grid.Column="0" 
                     Grid.Row="1" Content="Block"
-                    Grid.ColumnSpan="2"/>
-            <Button x:Name="Heal" Grid.Column="1" 
-                    Grid.Row="0" Content="Heal"/>
+                    Grid.ColumnSpan="2" Click="Block_Click"/>
+
+            <Button Template="{DynamicResource ButtonTemplateNew}"
+                    x:Name="HealBtn" Grid.Column="1" 
+                    Grid.Row="0" Content="Heal"
+                    Click="Heal_Click"/>
 
         </Grid>
     </Grid>

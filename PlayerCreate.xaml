@@ -1,0 +1,51 @@
+﻿<Window x:Class="Turn_Based_Game.PlayerCreate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Turn_Based_Game"
+        mc:Ignorable="d"
+        Title="Choose Your character" Height="450" Width="450" 
+        ResizeMode="NoResize">
+    <Grid Background="SkyBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="0.45*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Style="{StaticResource TopInfo}" Grid.RowSpan="4"
+           FontSize="20" Text="Enter Your name:" Padding="10"/>
+        
+        <TextBox x:Name="PlayerName" Style="{StaticResource TextBox}" 
+                 MaxLength="25" Text=""/>
+
+        <Button Style="{StaticResource ButtonPC}"
+                Template="{DynamicResource ButtonTemplatePC}"
+                Grid.Row="1" Content="Assasin" Margin="5" VerticalAlignment="Top"
+                Click="Assasin"/>
+        
+        <TextBlock Grid.Row="1" TextAlignment="Center" Foreground="White" 
+                   FontSize="14.5" VerticalAlignment="Bottom" Margin="15"
+Text="HP - 5, Damage - 5, Heal - 3, Heals Av. - 3, Blocks Av. - 2"/>
+
+        <Button Style="{StaticResource ButtonPC}"
+                Template="{DynamicResource ButtonTemplatePC}"
+                Grid.Row="2" Content="Knight" Margin="5" VerticalAlignment="Top"
+                Click="Knight"/>
+        
+        <TextBlock Grid.Row="2" TextAlignment="Center" Foreground="White" 
+                   FontSize="14.5" VerticalAlignment="Bottom" Margin="15"
+Text="HP - 7, Damage - 4, Heal - 2, Heals Av. - 2, Blocks Av. - 3"/>
+        
+        <Button Style="{StaticResource ButtonPC}"
+                Template="{DynamicResource ButtonTemplatePC}"
+                Grid.Row="3" Content="Mage" Margin="5" VerticalAlignment="Top"
+                Click="Mage"/>
+        
+        <TextBlock Grid.Row="3" TextAlignment="Center" Foreground="White" 
+                   FontSize="14.5" VerticalAlignment="Bottom" Margin="15"
+Text="HP - 4, Damage - 3, Heal - 5, Heals Av. - 5, Blocks Av. - 1"/>
+    </Grid>
+</Window>

@@ -14,3 +14,5 @@ E:\Programowanie\Turn-Based-Game\obj\Debug\Turn-Based-Game.csproj.CoreCompileInp
 E:\Programowanie\Turn-Based-Game\obj\Debug\Turn-Based-Game.exe
 E:\Programowanie\Turn-Based-Game\obj\Debug\Turn-Based-Game.pdb
 E:\Programowanie\Turn-Based-Game\obj\Debug\App.baml
+E:\Programowanie\Turn-Based-Game\obj\Debug\PlayerCreate.g.cs
+E:\Programowanie\Turn-Based-Game\obj\Debug\PlayerCreate.baml

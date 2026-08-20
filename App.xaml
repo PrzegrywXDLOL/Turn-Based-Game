@@ -5,8 +5,8 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ImageBrush x:Key="ButtonImage" ImageSource="/Assets/Sign.png"/>
-        <ImageBrush x:Key="TextBlockImage" ImageSource="/Assets/Scroll.png"/>
-        <ImageBrush x:Key="TopTextBlockImage" ImageSource="Assets\TopSign.png"/>
+        <ImageBrush x:Key="ScrollViewImage" ImageSource="/Assets/Scroll.png"/>
+        <ImageBrush x:Key="TopTextBlockImage" ImageSource="/Assets/TopSign.png"/>
         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
 
         <Style TargetType="{x:Type Button}">
@@ -15,17 +15,31 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{StaticResource ButtonImage}"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="240"/>
+            <Setter Property="Height" Value="42"/>
         </Style>
-        
+
+        <Style TargetType="{x:Type Button}" x:Key="ButtonPC">
+            <Setter Property="FontFamily" Value="Segoe Script Bold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{StaticResource ButtonImage}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="360"/>
+            <Setter Property="Height" Value="42"/>
+        </Style>
+
         <Style TargetType="{x:Type TextBlock}" x:Key="RoundInfo">
             <Setter Property="FontFamily" Value="Segoe Script Bold"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="30,15,30,15"/>
-            <Setter Property="Background" Value="{StaticResource TextBlockImage}"/>
+            <Setter Property="Padding" Value="0,5,0,5"/>
+            <Setter Property="MinHeight" Value="90"/>
         </Style>
         
         <Style TargetType="{x:Type TextBlock}" x:Key="TopInfo">
@@ -40,44 +54,174 @@
         <Style TargetType="{x:Type Image}" x:Key="Buffs">
             <Setter Property="Margin" Value="25"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Height" Value="75"/>
-            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Stretch" Value="Fill"/>
         </Style>
 
-        <Style TargetType="{x:Type ScrollViewer}">
+        <Style TargetType="{x:Type Image}" x:Key="Sprites">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="Margin" Value="0,0,0,-10"/>
+        </Style>
+
+        <Style TargetType="{x:Type ScrollViewer}" x:Key="ScrollBackground">
             <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
             <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="Background" Value="ForestGreen"/>
             <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="{StaticResource ScrollViewImage}"/>
         </Style>
 
-        <Style TargetType="{x:Type ProgressBar}">
+        <Style TargetType="{x:Type TextBox}" x:Key="TextBox">
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Background" Value="SandyBrown"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Margin" Value="38"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="{x:Type ProgressBar}" x:Key="ProgressBarWithText">
             <Setter Property="Height" Value="20"/>
             <Setter Property="Width" Value="450"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Background" Value="Red"/>
-        </Style>
-
-        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Foreground" Value="SandyBrown"/>
-            <Setter Property="Background" Value="ForestGreen"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ScrollBar}">
-                        <Grid x:Name="GridRoot" Width="10">
-                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true">
-                                <Track.Thumb>
-                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
-                                               Style="{DynamicResource ScrollThumbs}"/>
-                                </Track.Thumb>
-                            </Track>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid x:Name="Root">
+                            <Border x:Name="PART_Track" Background="Red" BorderBrush="#281205" BorderThickness="2" CornerRadius="6" />
+                            <Border x:Name="PART_Indicator" Background="LimeGreen" BorderBrush="#281205" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                   Foreground="White" FontWeight="Bold" FontSize="16" 
+                                   IsHitTestVisible="False">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} / {1}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="1" Background="#3E1F0D" BorderBrush="#281205" BorderThickness="1,0,1,0"/>
+                            <RepeatButton x:Name="decreaseButton" Grid.Row="0" Height="16" Command="{x:Static ScrollBar.LineUpCommand}">
+                                <RepeatButton.Template>
+                                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                        <Border Background="#5C3A21" BorderBrush="#281205" BorderThickness="1">
+                                            <Path Data="M 0,4 L 4,0 L 8,4 Z" Fill="SandyBrown" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </RepeatButton.Template>
+                            </RepeatButton>
+                            <Track x:Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Style="{DynamicResource ScrollThumbs}">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                <Border CornerRadius="2" Margin="0,2,0,2" BorderBrush="#2E1506" BorderThickness="1">
+                                                    <Border.Background>
+                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                            <GradientStop Color="#A0522D" Offset="0.0"/>
+                                                            <GradientStop Color="#DEB887" Offset="0.5"/>
+                                                            <GradientStop Color="#A0522D" Offset="1.0"/>
+                                                        </LinearGradientBrush>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                            <RepeatButton x:Name="increaseButton" Grid.Row="2" Height="16" Command="{x:Static ScrollBar.LineDownCommand}">
+                                <RepeatButton.Template>
+                                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                        <Border Background="#5C3A21" BorderBrush="#281205" BorderThickness="1">
+                                            <Path Data="M 0,0 L 4,4 L 8,0 Z" Fill="SandyBrown" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </RepeatButton.Template>
+                            </RepeatButton>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="ButtonTemplateNew" TargetType="{x:Type ButtonBase}">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource ButtonImage}"/>
+                    <Setter Property="Height" Value="47"/>
+                    <Setter Property="Width" Value="245"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" Value="{StaticResource ButtonImage}"/>
+                    <Setter Property="Height" Value="37"/>
+                    <Setter Property="Width" Value="235"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" Value="0.5"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Black" ShadowDepth="5" Opacity="0.9" BlurRadius="3"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="TextElement.Foreground" Value="#B0B0B0"/>
+                    <Setter Property="TextElement.FontWeight" Value="Normal"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ButtonTemplatePC" TargetType="{x:Type ButtonBase}">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+            BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource ButtonImage}"/>
+                    <Setter Property="Height" Value="47"/>
+                    <Setter Property="Width" Value="375"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" Value="{StaticResource ButtonImage}"/>
+                    <Setter Property="Height" Value="37"/>
+                    <Setter Property="Width" Value="350"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
 
     </Application.Resources>
 </Application>

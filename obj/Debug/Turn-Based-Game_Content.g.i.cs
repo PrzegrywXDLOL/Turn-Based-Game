@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sign.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/decline.png")]
 
 
